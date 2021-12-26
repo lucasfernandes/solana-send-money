@@ -51,13 +51,14 @@ const Home: NextPage = () => {
 
 
   return (
-    <div className='flex flex-col items-center justify-end w-full h-screen min-h-screen pb-16 space-y-20'
+    <div className='flex flex-col items-center justify-center max-h-screen min-h-screen bg-center bg-no-repeat bg-cover'
+    
     style={{
-      backgroundSize: "cover",
-      backgroundAttachment: "fixed",
+      // backgroundSize: "cover",
+      // backgroundAttachment: "fixed",
       backgroundImage: `url(${img})`,
     }}>
-      <div className='flex items-center justify-center space-x-4'>
+      <div className='flex items-center justify-center space-x-4 mt-96 h-lg'>
         <WalletMultiButton />
         <button onClick={sendSol} disabled={!publicKey} className='px-6 py-3 font-bold text-white bg-red-400 rounded disabled:opacity-40 hover:opacity-75'>
           Send 1 SOL
@@ -68,10 +69,9 @@ const Home: NextPage = () => {
         </button>
       </div>
       
-      { message && 
-        <div className='px-4 py-2 text-xs font-bold text-center text-white bg-purple-400 rounded'>
+        <div className={`px-4 py-2 mt-8 text-sm font-bold text-center text-white bg-purple-400 rounded ${message === "" && "opacity-0"}`}>
           {message} {transactionSignature && <a href={`https://solscan.io/tx/${transactionSignature}?cluster=devnet`} target="blank">- [Solscan]</a>}
-        </div> }
+        </div>
     </div>
   )
 }
